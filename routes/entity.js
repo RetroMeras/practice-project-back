@@ -1,16 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const uuid = require("uuid");
+const { get, post } = require("../database/entity");
 
-router.get("/", (req, res) => {
-  console.log(1);
-  res.send("Entities");
+router.get("/", async (req, res) => {
+  const data = await get();
+  res.json(data);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const body = req.body;
   body.uuid = uuid.v4();
-  console.log(body);
+  const result = await post(body);
   res.json(body);
 });
 

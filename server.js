@@ -20,8 +20,4 @@ app.use((req, res, next) => {
 
 app.use("/entity", entities_route);
 
-app.get("/", (req, res) => {
-  res.send("123");
-});
-
 app.listen(port, () => console.log(`Started on port ${port}`));
