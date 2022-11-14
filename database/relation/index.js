@@ -9,7 +9,7 @@ const post = async (body) => {
 };
 
 const deleteRelation = async (uuid) => {
-  return knwx.table("relations").where({ uuid }).del();
+  return knex.table("relations").where({ uuid }).del();
 };
 
 module.exports = {

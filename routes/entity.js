@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 router.delete("/:uuid", async (req, res) => {
   const uuid = req.params.uuid;
   const result = await deleteEntity(uuid);
-  res.status(200);
+  res.status(200).send();
 });
 
 module.exports = router;
