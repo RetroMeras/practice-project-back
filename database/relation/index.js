@@ -8,6 +8,10 @@ const post = async (body) => {
   return knex.table("relations").insert(body);
 };
 
+const update = async (uuid, body) => {
+  return knex.table("relations").where({ uuid }).update(body);
+};
+
 const deleteRelation = async (uuid) => {
   return knex.table("relations").where({ uuid }).del();
 };
@@ -15,5 +19,6 @@ const deleteRelation = async (uuid) => {
 module.exports = {
   get,
   post,
+  update,
   deleteRelation,
 };
