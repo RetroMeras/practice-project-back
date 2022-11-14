@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const entities_route = require("./routes/entity");
+const entity_route = require("./routes/entity");
+const relation_route = require("./routes/relation");
 
 const port = 3000;
 const app = express();
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
   console.log(req.method, req.url, res.statusCode);
 });
 
-app.use("/entity", entities_route);
+app.use("/entity", entity_route);
+app.use("/relation", relation_route);
 
 app.listen(port, () => console.log(`Started on port ${port}`));
