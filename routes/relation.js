@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const uuid = require("uuid");
-const { get, post } = require("../database/relation");
+const { get, post, deleteRelation } = require("../database/relation");
 
 router.get("/", async (req, res) => {
   const data = await get();
@@ -13,6 +13,12 @@ router.post("/", async (req, res) => {
   body.uuid = uuid.v4();
   const result = await post(body);
   res.json(body);
+});
+
+router.delete("/:uuid", async (req, res) => {
+  const uuid = req.params.uuid;
+  const result = await deleteRelation(uuid);
+  res.status(200);
 });
 
 module.exports = router;

@@ -8,7 +8,12 @@ const post = async (body) => {
   return knex.table("relations").insert(body);
 };
 
+const deleteRelation = async (uuid) => {
+  return knwx.table("relations").where({ uuid }).del();
+};
+
 module.exports = {
   get,
   post,
+  deleteRelation,
 };
