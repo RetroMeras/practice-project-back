@@ -1,23 +1,26 @@
 const knex = require("../open");
 
+const generateSupply = (body) => ({
+  id: body.id,
+  seller: body.seller,
+  buyer: body.buyer,
+  resource: body.resource,
+  price_value: body.price.value,
+  price_unt: body.price.unit,
+  size_value: body.size.value,
+  size_unit: body.size.unit,
+});
+
 const get = () => {
   return knex.table("supplies").select("*");
 };
 
 const post = async (body) => {
-  return knex.table("supplies").insert({
-    id: body.id,
-    buyer: body.supplier, // id
-    product: body.resource, // id
-  });
+  return knex.table("supplies").insert(generateSupply(body));
 };
 
 const update = async (id, body) => {
-  return knex.table("supplies").where({ id }).update({
-    id: body.id,
-    buyer: body.supplier, // id
-    product: body.resource, // id
-  });
+  return knex.table("supplies").where({ id }).update(generateSupply(body));
 };
 
 const deleteSupply = async (id) => {
