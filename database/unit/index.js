@@ -7,13 +7,13 @@ const get = () => {
 const post = async (body) => {
   return knex.table("units").insert({
     id: body.id,
-    name: body.id,
+    name: body.name,
   });
 };
 
 const update = async (id, body) => {
   return knex.table("units").where({ id }).update({
-    name: body.id,
+    name: body.name,
   });
 };
 

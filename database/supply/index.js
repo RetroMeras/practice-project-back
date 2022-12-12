@@ -6,7 +6,7 @@ const generateSupply = (body) => ({
   buyer: body.buyer,
   resource: body.resource,
   price_value: body.price.value,
-  price_unt: body.price.unit,
+  price_unit: body.price.unit,
   size_value: body.size.value,
   size_unit: body.size.unit,
 });
