@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const uuid = require("uuid");
-const { get, post, deleteRelation, update } = require("../database/relation");
+const id = require("uuid");
+const { get, post, deleteResource, update } = require("../database/resource");
 
 router.get("/", async (req, res) => {
   const data = await get();
@@ -10,21 +10,21 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const body = req.body;
-  body.uuid = uuid.v4();
+  body.id = id.v4();
   const result = await post(body);
   res.json(body);
 });
 
-router.put("/:uuid", async (req, res) => {
+router.put("/:id", async (req, res) => {
   const body = req.body;
-  const uuid = req.params.uuid;
-  const result = await update(uuid, body);
+  const id = req.params.id;
+  const result = await update(id, body);
   res.json(body);
 });
 
-router.delete("/:uuid", async (req, res) => {
-  const uuid = req.params.uuid;
-  const result = await deleteRelation(uuid);
+router.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  const result = await deleteResource(id);
   res.status(200).send();
 });
 
