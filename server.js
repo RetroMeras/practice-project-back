@@ -4,6 +4,7 @@ const participant_route = require("./routes/participant");
 const resource_route = require("./routes/resource");
 const product_route = require("./routes/product");
 const supply_route = require("./routes/supply");
+const unit_route = require("./routes/unit");
 
 const port = 3000;
 const app = express();
@@ -25,5 +26,6 @@ app.use("/participant", participant_route);
 app.use("/resource", resource_route);
 app.use("/product", product_route);
 app.use("/supply", supply_route);
+app.use("/unit", unit_route);
 
 app.listen(port, () => console.log(`Started on port ${port}`));
