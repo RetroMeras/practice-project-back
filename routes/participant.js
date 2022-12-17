@@ -7,6 +7,7 @@ const {
   update,
   deleteParticipant,
 } = require("../database/participant");
+const { post: post_creator } = require("../database/creator");
 
 router.get("/", async (req, res) => {
   const data = await get();
@@ -16,7 +17,12 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const body = req.body;
   body.id = id.v4();
-  const result = await post(body);
+  const result_participant = await post(body);
+  const result_creator = await post_creator({
+    id: id.v4(),
+    participant: body.id,
+    resource: body.resource,
+  });
   res.json(body);
 });
 
