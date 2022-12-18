@@ -18,6 +18,7 @@ const update = async (id, body) => {
 };
 
 const deleteParticipant = async (id) => {
+  knex.table("creators").where({ participant: id }).del();
   return knex.table("participants").where({ id }).del();
 };
 

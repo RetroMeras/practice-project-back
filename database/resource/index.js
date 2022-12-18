@@ -18,6 +18,7 @@ const update = async (id, body) => {
 };
 
 const deleteResource = async (id) => {
+  knex.table("creators").where({ resource: id }).del();
   return knex.table("resources").where({ id }).del();
 };
 
