@@ -18,7 +18,15 @@ const update = async (id, body) => {
 };
 
 const deleteParticipant = async (id) => {
-  knex.table("creators").where({ participant: id }).del();
+  const creators = (
+    await knex.table("creators").where({ participant: id }).select("id")
+  ).map((item) => item.id);
+  await knex
+    .table("supplies")
+    .whereIn("buyer", creators)
+    .orWhereIn("seller", creators)
+    .del();
+  await knex.table("creators").where({ participant: id }).del();
   return knex.table("participants").where({ id }).del();
 };
 

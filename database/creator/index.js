@@ -12,12 +12,12 @@ const post = async (body) => {
   });
 };
 
-const deleteUnit = async (id) => {
+const deleteCreator = async (id) => {
   return knex.table("creators").where({ id }).del();
 };
 
 module.exports = {
   get,
   post,
-  deleteUnit,
+  deleteCreator,
 };
