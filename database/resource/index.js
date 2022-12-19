@@ -1,4 +1,5 @@
 const knex = require("../open");
+const deleteResourceById = require("../utils").deleteResource;
 
 const get = () => {
   return knex.table("resources").select("*");
@@ -18,8 +19,7 @@ const update = async (id, body) => {
 };
 
 const deleteResource = async (id) => {
-  knex.table("creators").where({ resource: id }).del();
-  return knex.table("resources").where({ id }).del();
+  return deleteResourceById(id);
 };
 
 module.exports = {
